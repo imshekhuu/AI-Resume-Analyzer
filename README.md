@@ -1,89 +1,76 @@
-🧠 AI Resume Analyzer
+# 🧠 AI Resume Analyzer  
+**ML + NLP + LangChain + FastAPI + Streamlit**
 
-ML + NLP + LangChain + FastAPI + Streamlit
+---
 
-📌 Project Overview
+## 📌 Project Overview
 
-This project is a beginner-friendly end-to-end AI system that analyzes a resume and gives structured career guidance.
+AI Resume Analyzer is an end-to-end beginner-friendly project that demonstrates how to build a complete AI system — not just a model.
 
 The system:
+1. Uses **Machine Learning** to predict a suitable job role from resume text  
+2. Uses **LangChain + LLM** to generate career advice  
+3. Uses an **Output Parser** to keep responses structured  
+4. Exposes functionality via an **API**  
+5. Displays results in a **Streamlit UI**  
 
-Uses Machine Learning to predict the most suitable job role from resume text
+This project focuses on **system thinking**, not model complexity.
 
-Uses LangChain + LLM to generate career advice
+---
 
-Uses an Output Parser to keep results clean and structured
+## 🎯 What the Project Does
 
-Exposes everything through an API
+### Input  
+- Resume text (pasted by the user)
 
-Displays results in a Streamlit UI
+### Output  
+- Predicted job role  
+- Missing skills  
+- Improvement suggestions  
+- Learning roadmap  
 
-This is not a chatbot demo — it is a complete working pipeline.
+All results are returned in a clean, structured format.
 
-🎯 What the Project Does
-Input
+---
 
-User pastes resume text.
+## 🔁 System Flow
 
-Output
+User (Streamlit)  
+→ API (FastAPI / Flask)  
+→ ML Model (Logistic Regression + TF-IDF)  
+→ LangChain (LLM Prompt)  
+→ Output Parser  
+→ API Response (JSON)  
+→ Streamlit UI  
 
-The system returns:
+---
 
-Predicted job role
+## 🧩 Tech Stack
 
-Missing skills
+### Machine Learning
+- Logistic Regression  
+- TF-IDF Vectorizer  
+- scikit-learn  
 
-Improvement suggestions
+### NLP
+- Text preprocessing using TF-IDF  
 
-Learning roadmap
+### LLM Layer
+- LangChain  
+- PromptTemplate  
+- Output Parser  
 
-All in a clean, structured format.
+### Backend
+- FastAPI (or Flask)
 
-🔁 System Flow
-User (Streamlit)
-      ↓
-FastAPI / Flask
-      ↓
-ML Model (Logistic Regression)
-      ↓
-LangChain (LLM Prompt)
-      ↓
-Output Parser
-      ↓
-API Response (JSON)
-      ↓
-Streamlit UI
+### Frontend
+- Streamlit  
 
-🧩 Tech Stack
-Machine Learning
+---
 
-Logistic Regression
+## 📁 Project Structure
 
-TF-IDF Vectorizer
-
-scikit-learn
-
-NLP
-
-TF-IDF for text vectorization
-
-LLM Layer
-
-LangChain
-
-PromptTemplate
-
-Output Parser
-
-Backend
-
-FastAPI (or Flask)
-
-Frontend
-
-Streamlit
-
-📁 Project Structure
+```
 resume-ai/
 │
 ├── ml/
@@ -105,152 +92,88 @@ resume-ai/
 │
 ├── requirements.txt
 └── README.md
+```
 
-🧠 How the System Works (Step by Step)
-1. User Input
+---
 
-User enters resume text in Streamlit.
+## 🧠 How It Works (Step-by-Step)
 
-2. ML Prediction
+1. User enters resume text in Streamlit  
+2. API receives the text  
+3. ML model converts text to numbers using TF-IDF  
+4. Logistic Regression predicts the job role  
+5. LangChain generates career advice based on role + resume  
+6. Output Parser enforces structured output  
+7. API returns clean JSON  
+8. UI displays results  
 
-The ML model:
+---
 
-Converts text into numbers using TF-IDF
+## 🤖 Why Logistic Regression?
 
-Uses Logistic Regression to predict a job role
+- The task is **classification**, not regression  
+- Simple, interpretable, and fast  
+- Ideal for beginner ML pipelines  
+- Keeps focus on architecture and flow  
 
-Example:
+---
 
-Input:  "Python, Pandas, SQL, ML"
-Output: "Data Scientist"
+## 🧪 Dataset
 
-3. LangChain Reasoning
+The dataset contains two columns:
 
-LangChain receives:
+| Column | Description |
+|------|-------------|
+| resume_text | Resume content |
+| job_role | Target label |
 
-Resume text
+---
 
-Predicted role
+## 🚀 How to Run
 
-It asks the LLM to generate:
-
-Missing skills
-
-Improvements
-
-Learning roadmap
-
-4. Output Parsing
-
-The AI response is forced into this structure:
-
-{
-  "missing_skills": [],
-  "improvements": [],
-  "roadmap": []
-}
-
-
-This makes the system reliable and UI-safe.
-
-5. API Response
-
-FastAPI returns a clean JSON response containing:
-
-Predicted role
-
-Structured career advice
-
-6. UI Display
-
-Streamlit shows the result in a simple dashboard.
-
-🤖 Why Logistic Regression?
-
-This project uses Logistic Regression because:
-
-The task is classification, not regression
-
-It is simple, fast, and reliable
-
-It is perfect for beginner ML pipelines
-
-It keeps the focus on system design, not model complexity
-
-🧪 Dataset
-
-The dataset contains only two columns:
-
-Column	Description
-resume_text	Input text for the model
-job_role	Target label
-
-This keeps the ML task focused and understandable.
-
-🚀 How to Run the Project
-1. Install dependencies
+### 1. Install dependencies
+```
 pip install -r requirements.txt
+```
 
-2. Train the ML model
+### 2. Train ML model
+```
 python ml/ml_train.py
+```
 
-
-This creates:
-
-resume_role_model.pkl
-
-3. Run the API
+### 3. Run API
+```
 uvicorn api.main:app --reload
+```
 
-4. Run Streamlit UI
+### 4. Run Streamlit UI
+```
 streamlit run ui/app.py
+```
 
-📌 What This Project Teaches
+---
 
-By building this project you learn:
+## 📌 Learning Outcomes
 
-How text becomes numbers using TF-IDF
+- Understand how text becomes numbers (TF-IDF)  
+- Apply ML classification in a real system  
+- Use LangChain for controlled LLM usage  
+- Enforce structured AI output  
+- Build API + UI integration  
 
-How ML classification fits into a real system
+---
 
-How LangChain controls LLM behavior
+## ⚠️ Limitations
 
-Why Output Parsers matter
+- Small dataset  
+- Simple ML model  
+- No authentication or database  
+- Intended for learning, not production  
 
-How APIs separate logic from UI
+---
 
-How to build a complete AI pipeline
+## 🏁 Final Note
 
-This is system thinking, not tutorial copying.
+This project is about building a **complete AI pipeline**, not chasing accuracy.
 
-⚠️ Limitations
-
-This project is meant for learning, not production:
-
-Small dataset
-
-Simple ML model
-
-No authentication
-
-No database
-
-No advanced NLP
-
-And that is intentional.
-
-🎓 Who This Project Is For
-
-Beginners in ML
-
-Students learning LangChain
-
-Anyone who wants to understand how AI systems are built, not just how models are trained
-
-🏁 Final Note
-
-This project is not about building the smartest AI.
-It is about building a complete working system.
-
-If you can explain this pipeline clearly,
-you have already moved ahead of most beginners.
+If you can explain every step of this system, you’ve moved beyond beginner level.
