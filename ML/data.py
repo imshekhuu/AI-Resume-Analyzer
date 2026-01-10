@@ -24,8 +24,10 @@ print(y)
 X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
 
 model = Pipeline([
-    ("tfid", TfidfVectorizer()),
-    ("clf", LogisticRegression(max_iter=1000))
+    ("tfid", TfidfVectorizer(stop_words="english",
+    ngram_range=(1, 2),
+    max_features=3000)),
+    ("clf", LogisticRegression(max_iter=1000, class_weight="balanced"))
 ])
 
 model.fit(X_train, y_train)
@@ -37,15 +39,15 @@ print("Accuracy Score: ",acc)
 
 
 
-# joblib.dump(model, "resume_role_model.pkl")
-# print("Model saved as resume_role_model.pkl")
+joblib.dump(model, "resume_role_model.pkl")
+print("Model saved as resume_role_model.pkl")
 
 
 
 def predict_role(resume_text):
     return model.predict([resume_text])[0]
 
-sample_text = "Python, Pandas, SQL, machine learning, data analysis"
+sample_text = "JavaScript, Tailwind CSSNode.js, Express, REST API, MongoDB"
 prediction = predict_role(sample_text)
 print("Prediction is:", prediction)
 
