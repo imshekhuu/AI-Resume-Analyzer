@@ -47,7 +47,7 @@ def predict_role(resume_text):
 
 sample_text = "Python, Pandas, SQL, machine learning, data analysis"
 prediction = predict_role(sample_text)
-print(prediction)
+print("Prediction is:", prediction)
 
 
 
