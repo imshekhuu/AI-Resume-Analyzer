@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Annotated
 import joblib
 from pathlib import Path
+from langchain_app.llm_service import generate_career_advice
 
 app = FastAPI(
     title="AI Resume Analyzer API",
@@ -24,6 +25,7 @@ class ResumeInput(BaseModel):
 
 class PredictionOutput(BaseModel):
     predicted_role: str
+    career_advice: str
 
 
 def predict_role(resume_text: str) -> str:
@@ -32,7 +34,15 @@ def predict_role(resume_text: str) -> str:
 @app.post("/predict", response_model=PredictionOutput)
 def predict_resume(data: ResumeInput):
     role = predict_role(data.resume_text)
-    return {"predicted_role": role}
+
+    advice = generate_career_advice(
+        resume_text=data.resume_text,
+        role=role
+    )
+    return {
+        "predicted_role": role,
+        "career_advice": advice
+    }
 
 
 @app.get("/")
