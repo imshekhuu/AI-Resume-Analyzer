@@ -171,6 +171,9 @@ streamlit run ui/app.py
 - Intended for learning, not production  
 
 ---
+## Project UI
+
+![UI Screenshot](images/ui.png)
 
 ## 🏁 Final Note
 
