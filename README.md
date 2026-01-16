@@ -174,9 +174,3 @@ streamlit run ui/app.py
 ## Project UI
 
 ![UI Screenshot](images/ui.png)
-
-## 🏁 Final Note
-
-This project is about building a **complete AI pipeline**, not chasing accuracy.
-
-If you can explain every step of this system, you’ve moved beyond beginner level.
